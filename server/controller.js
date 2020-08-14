@@ -37,6 +37,11 @@ module.exports = {
     }
   },
 
+  logout: (req, res) => {
+    req.session.destroy();
+    res.sendStatus(200);
+  },
+
   create: (req, res) => {
     const db = req.app.get('db');
     const { title, image, content } = req.body;

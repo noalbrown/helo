@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux';
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class Dashboard extends React.Component {
   constructor() {
@@ -28,7 +28,7 @@ class Dashboard extends React.Component {
   render() {
     const { title } = this.state
     const newPosts = this.state.posts.map((e, id) => (
-      <Auth key={id} data={e} />))
+      <Link to='/post' key={id} data={e} />))
     return <div>
       <div>
         <input name='title' type='text' value={title} placeholder='Search' />

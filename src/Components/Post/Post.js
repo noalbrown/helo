@@ -1,9 +1,23 @@
 import React from 'react'
+import axios from 'axios'
+import { connect } from 'react-redux';
 
 class Post extends React.Component {
+  create(id, content) {
+    axios.post('/api/somename', { id, content }).then(res => {
+      this.setState({
+        posts: res.data
+      })
+    }).catch(error => console.log(error))
+  }
+
   render() {
-    return <h1>Post</h1>;
+    return <div>
+      <button>Delete Post</button>
+    </div>
   }
 }
 
-export default Post;
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps(Post));

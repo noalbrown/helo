@@ -1,11 +1,9 @@
 require('dotenv').config();
 const express = require('express');
-// const session = require('express-session');
+const session = require('express-session');
 const app = express();
 const massive = require('massive');
 const authctrl = require('./controller');
-const { findByPlaceholderText } = require('@testing-library/react');
-// const middle = require('./middleware/authMiddleware');
 
 const { SESSION_SECRET, CONNECTION_STRING, SERVER_PORT } = process.env;
 
@@ -32,6 +30,7 @@ app.use(
 
 app.post('/auth/login', authctrl.login)
 app.post('/auth/register', authctrl.register)
+app.get('/auth/logout', auth.logout)
 // I did not mean to put these in the same ctrl folder, ran out of time
 app.post('/api/create_post', authctrl.create);
 app.get('/api/get_posts', authctrl.getAll);
