@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+let id = posts[posts.length - 1].id + 1
 
 module.exports = {
   register: async (req, res) => {
@@ -34,5 +35,52 @@ module.exports = {
         res.status(403).send('User Name or Password incorrect')
       }
     }
+  },
+
+  create: (req, res) => {
+    const db = req.app.get('db');
+    const { title, image, content } = req.body;
+
+    db.create_post([title, image, content])
+      .then(() => res.sendStatus(200))
+      .catch(err => {
+        res.status(500).send({ errorMessage: "Could not generate post" });
+        console.log(err)
+      });
+  },
+
+  getOne: (req, res) => {
+    const db = req.app.get('db');
+    const { id } = req.params;
+
+    db.get_post(id)
+      .then(posts => res.status(200).send(posts))
+      .catch(err => {
+        res.status(500).send({ errorMessage: "Could not get Post" });
+        console.log(err)
+      });
+  },
+
+  getAll: (req, res) => {
+    const db = req.app.get('db');
+
+    db.get_posts()
+      .then(posts => res.status(200).send(posts))
+      .catch(err => {
+        res.status(500).send({ errorMessage: "Could not get Posts" });
+        console.log(err)
+      });
+  },
+
+  delete: (req, res) => {
+    const db = req.app.get('db');
+    const { id } = req.params;
+
+    db.delete_post(id)
+      .then(() => res.sendStatus(200))
+      .catch(err => {
+        res.status(500).send({ errorMessage: 'Could not delete' });
+        console.log(err)
+      });
   },
 }

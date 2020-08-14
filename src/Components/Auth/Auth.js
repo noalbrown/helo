@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { loginUser } from '../../ducks/reducer';
 
 class Auth extends React.Component {
   constructor() {
@@ -48,4 +49,4 @@ class Auth extends React.Component {
   }
 }
 
-export default connect(null, getUser)(Header);
+export default connect(null, loginUser)(Auth);
