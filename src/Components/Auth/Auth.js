@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
 class Auth extends React.Component {
   constructor() {
@@ -7,6 +9,10 @@ class Auth extends React.Component {
       username: '',
       password: ''
     }
+  }
+
+  componentDidMount() {
+    this.props.getUser();
   }
 
   login = () => {
@@ -42,4 +48,4 @@ class Auth extends React.Component {
   }
 }
 
-export default Auth;
+export default connect(null, getUser)(Header);
