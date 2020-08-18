@@ -30,8 +30,8 @@ app.use(
 
 app.post('/auth/login', authctrl.login)
 app.post('/auth/register', authctrl.register)
-app.get('/auth/logout', auth.logout)
-// I did not mean to put these in the same ctrl folder, ran out of time
+app.get('/auth/logout', authctrl.logout)
+
 app.post('/api/create_post', authctrl.create);
 app.get('/api/get_posts', authctrl.getAll);
 app.get('/api/get_post/:id', authctrl.getOne);

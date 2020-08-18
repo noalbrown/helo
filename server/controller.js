@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-let id = posts[posts.length - 1].id + 1
 
 module.exports = {
   register: async (req, res) => {
