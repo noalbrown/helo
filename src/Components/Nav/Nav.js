@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
+import axios from 'axios'
 
 class Nav extends React.Component {
   componentDidMount() {
